@@ -30,6 +30,10 @@ module Spree
       self.count(:conditions => { :type => self.to_s, :environment => Rails.env, :active => true }) > 0
     end
 
+    def self.current
+      PaymentMethod.find(:first, :conditions => {:active => true, :environment => ENV['RAILS_ENV']}) 
+    end
+
     def method_type
       type.demodulize.downcase
     end

@@ -16,7 +16,7 @@ module Spree
     # instantiates the selected gateway and configures with the options stored in the database
 
     def self.current
-      Spree::Gateway.find(:first, :conditions => {:active => true, :environment => ENV['RAILS_ENV']}) 
+      super
     end
 
     def provider
