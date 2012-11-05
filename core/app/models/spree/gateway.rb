@@ -6,16 +6,17 @@ module Spree
 
     preference :server, :string, :default => 'test'
     preference :test_mode, :boolean, :default => true
-    
+
     attr_accessible :preferred_server, :preferred_test_mode
 
     def payment_source_class
-      Creditcard
+      CreditCard
     end
 
     # instantiates the selected gateway and configures with the options stored in the database
+
     def self.current
-      super
+      Spree::Gateway.find(:first, :conditions => {:active => true, :environment => ENV['RAILS_ENV']}) 
     end
 
     def provider
