@@ -128,11 +128,7 @@ module Spree
     end
 
     def checkout_steps
-      if payment and payment.payment_method.payment_profiles_supported?
-        %w(address delivery payment confirm complete)
-      else
-        %w(address delivery payment complete)
-      end
+      %w(address delivery payment complete)
     end
 
     # For compatiblity with Calculator::PriceSack
